@@ -1,12 +1,9 @@
 package com.cat.activity;
 
-import com.cat.command.TestMVCCommand;
-import com.peter.activity.DataShowActivity;
 import com.ta.TAApplication;
 import com.ta.util.cache.TAFileCache;
 import com.ta.util.cache.TAFileCache.TACacheParams;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -67,50 +64,7 @@ public class SplashActivity extends ThinkAndroidBaseActivity
 		TACacheParams cacheParams = new TACacheParams(this, SYSTEMCACHE);
 		TAFileCache fileCache = new TAFileCache(cacheParams);
 		application.setFileCache(fileCache);
-		// 注册activity
-		getTAApplication().registerCommand(R.string.testmvccommand,
-				TestMVCCommand.class);
-		
-		// 注册activity
-		getTAApplication().registerActivity(R.string.thinkandroidcacheactivtiy,
-				ThinkAndroidCacheActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(R.string.thinkandroiddbactivtiy,
-				ThinkAndroidDBActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(
-				R.string.thinkandroidimagecacheactivtiy,
-				ThinkAndroidImageCacheActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(R.string.thinkandroidmvcactivtiy,
-				ThinkAndroidMvcActivtiy.class);
-		
-		// 注册activity
-		getTAApplication().registerActivity(
-				R.string.thinkandroidsimpledwonloadactivtiy,
-				ThinkAndroidSimpleDwonLoadActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(
-				R.string.thinkandroidsimpletwodwonloadactivtiy,
-				ThinkAndroidSimpleTwoDwonLoadActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(
-				R.string.thinkandroiddwonloadactivtiy,
-				ThinkAndroidDwonLoadActivtiy.class);
-		// 注册activity
-		getTAApplication().registerActivity(
-				R.string.thinkandroidmultithreaddwonloadactivtiy,
-				ThinkAndroidMultiThreadDwonLoadActivtiy.class);
-
-		// 注册activity
-		getTAApplication().registerActivity(R.string.thinkandroidotheractivtiy,
-				ThinkAndroidOtherActivtiy.class);
-		
-		
-		// 注册activity
-				getTAApplication().registerActivity(R.string.thinkandroidmainactivity,
-						ThinkAndroidMainActivity.class);
-				
+			
 		// 注册activity
 		getTAApplication().registerActivity(R.string.thinkandroidloginactivity,
 				ThinkAndroidLoginActivity.class);
