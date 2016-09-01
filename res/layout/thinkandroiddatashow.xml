@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="空气净化设备"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="49dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_equ1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Air-Purify-1" />
+
+            <Button
+                android:id="@+id/btn_equ2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Air-Purify-2" />
+
+            <Button
+                android:id="@+id/btn_testM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                     android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="序号" />
+			   
+			   <TextView
+			       android:layout_width="0dp"
+			       android:layout_height="wrap_content"
+			        android:gravity="center_horizontal"
+			       android:layout_weight="1"
+			       android:text="变量名" />
+			    
+			  <TextView
+			      android:layout_width="0dp"
+			      android:layout_height="wrap_content"
+			      android:gravity="center_horizontal"
+			      android:layout_weight="1"
+			      android:text="变量值" />
+			  
+			   <TextView
+			       android:layout_width="0dp"
+			       android:layout_height="wrap_content"
+			       android:gravity="center_horizontal"
+			       android:layout_weight="1"
+			       android:text="描述" />
+  		
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30" >
+
+            </ListView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

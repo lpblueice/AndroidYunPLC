@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="thinkandroidmainactivity">ThinkAndroidMainActivity</string>
+    <string name="thinkandroiddbactivtiy">ThinkAndroidDBActivtiy</string>
+    <string name="thinkandroidcacheactivtiy">ThinkAndroidCacheActivtiy</string>
+    <string name="thinkandroidimagecacheactivtiy">ThinkAndroidImageCacheActivtiy</string>
+    <string name="thinkandroidmvcactivtiy">ThinkAndroidMvcActivtiy</string>
+    <string name="thinkandroiddwonloadactivtiy">ThinkAndroidDwonLoadActivtiy</string>
+    <string name="thinkandroidmultithreaddwonloadactivtiy">ThinkAndroidMultiThreadDwonLoadActivtiy</string>
+    <string name="thinkandroidsimpledwonloadactivtiy">ThinkAndroidSimpleDwonLoadActivtiy</string>
+    <string name="thinkandroidsimpletwodwonloadactivtiy">ThinkAndroidSimpleTwoDwonLoadActivtiy</string>
+     <string name="thinkandroidotheractivtiy">ThinkAndroidOtherActivtiy</string>
+
+    <string name="thinkandroidloginactivity">ThinkAndroidLoginActivity</string>
+    <string name="thinkandroiddatashowactivity">ThinkAndroidDataShowActivtiy</string>
+    
+    <string name="thinkandroidvarmodify_booleanactivity">ThinkAndroidVarModify_BooleanActivity</string>
+    <string name="thinkandroidvarmodify_intactivity">ThinkAndroidVarModify_IntActivity</string>
+    <string name="thinkandroidvarmodify_floatactivity">ThinkAndroidVarModify_FloatActivity</string></resources>

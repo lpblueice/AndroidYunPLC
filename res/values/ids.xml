@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- thinkandroidmain -->
+    <item name="test_db" type="id">false</item>
+    <item name="test_cache" type="id">false</item>
+    <item name="test_image_cache" type="id">false</item>
+    <item name="test_mvc" type="id">false</item>
+    <item name="test_http" type="id">false</item>
+    <item name="test_download" type="id">false</item>
+    <item name="test_other" type="id">false</item>
+    <item name="exit_app" type="id">false</item>
+
+    <!-- thinkandroiddb -->
+    <item name="insert_data" type="id">false</item>
+    <item name="delete_data" type="id">false</item>
+    <item name="update_data" type="id">false</item>
+    <item name="select_data" type="id">false</item>
+    <item name="show_data" type="id">false</item>
+    <!-- thinkandroidcache -->
+    <item name="gridView" type="id">false</item>
+    <!-- thinkandroidother -->
+    <item name="test_configure" type="id">false</item>
+    <item name="test_resoperate" type="id">false</item>
+    <item name="test_comparator" type="id">false</item>
+    
+     <!-- login activity -->
+    <item name="test_btn" type="id">false</item>
+    
+    <item name="static_EquGroupLogin_Title" type="id">false</item>
+    <item name="static_EquGroupName" type="id">false</item>
+    <item name="static_EquGroupPwd" type="id">false</item>
+    <item name="txt_EquGroupName" type="id">false</item>
+    <item name="txt_EquGroupPwd" type="id">false</item>
+    <item name="btn_EquGroupLogin" type="id">false</item>
+    
+    <item name="static_EquLogin_Title" type="id">false</item>
+    <item name="static_EquName" type="id">false</item>
+    <item name="static_EquPwd" type="id">false</item>
+    <item name="txt_EquName" type="id">false</item>
+    <item name="txt_EquPwd" type="id">false</item>
+    <item name="btn_EquLogin" type="id">false</item>
+    
+    
+    <!-- data show activity -->
+    <item name="tab_varShow" type="id">false</item>
+    
+     <item name="btn_equ1" type="id">false</item>
+     <item name="btn_equ2" type="id">false</item>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--item -->
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <!-- 序号 -->
+
+  <TextView
+      android:id="@+id/varItem_ID"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:gravity="center_horizontal" />
+
+  <!-- 变量名 -->
+
+  <TextView
+      android:id="@+id/varItem_Name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="2"
+      android:gravity="center_horizontal" />
+
+  <!-- 变量值 -->
+
+  <TextView
+      android:id="@+id/varItem_Value"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="2"
+      android:gravity="center_horizontal" />
+
+   <!-- 描述 -->
+
+  <TextView
+      android:id="@+id/varItem_Description"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="2" />
+
+</LinearLayout>
