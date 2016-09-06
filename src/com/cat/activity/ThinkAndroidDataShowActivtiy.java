@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import com.peter.grm.GrmData;
 import com.peter.grm.GrmEqu;
+import com.peter.grmmanager.GrmManager;
 import com.ta.annotation.TAInjectView;
 
 import android.app.Application;
@@ -34,18 +35,32 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 	@TAInjectView(id = R.id.btn_equ2)
 	Button btn_equ2;
 	
-
-	
 	ListView listView;
 	SimpleAdapter adapter;
-	List<HashMap<String, Object>> data = new ArrayList<HashMap<String,Object>>();
 	int mPosition;
 	
-	public static ArrayList<GrmEqu> grmEquArr = new ArrayList<GrmEqu>();
 	Timer freshDataTimer = new Timer();
+	List<HashMap<String, Object>> tempData = new ArrayList<HashMap<String,Object>>();
+	Handler mHandler;  
+	TimerTask timerTask = new TimerTask() {
+		@Override
+		public void run() {			
+			//tempData = null;
+			//tempData = GrmManager.getInstance().getData();
+			GrmManager.getInstance().getData(tempData);
+			if(tempData != null){
+				System.out.println("======data changed!======");
+				System.out.println("======data changed! id: "+ tempData.get(10).get("id"));
+				System.out.println("======data changed! name: "+ tempData.get(10).get("name"));
+				System.out.println("======data changed! value: "+ tempData.get(10).get("value"));
+				System.out.println("======data changed! description: "+ tempData.get(10).get("description"));
+				Message message = new Message();
+	            message.what = 1;
+	            mHandler.sendMessage(message);
+			}
+		}
+	};
 	
-	private Handler mHandler;
-
 	@Override
 	protected void onAfterOnCreate(Bundle savedInstanceState)
 	{
@@ -58,36 +73,36 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 
 		
 		try {
-			mHandler = new Handler() 
-			{
-				public void handleMessage(Message msg) 
-				{// 此方法在ui线程运行
-					 super.handleMessage(msg);
-		             if(msg.what == 1)
-		             {     		    
-		                 adapter.notifyDataSetChanged();
-		             }
+			mHandler = new Handler() {
+				public void handleMessage(Message msg) {// 此方法在ui线程运行
+					super.handleMessage(msg);
+					if (msg.what == 1) {
+						System.out.println("======adapter changed!======");
+						System.out.println("======adapter changed! id: "+ tempData.get(0).get("id"));
+						System.out.println("======adapter changed! name: "+ tempData.get(0).get("name"));
+						System.out.println("======adapter changed! value: "+ tempData.get(0).get("value"));
+						System.out.println("======adapter changed! description: "+ tempData.get(0).get("description"));
+						adapter.notifyDataSetChanged();
+					}
 				}
 			};
 			
 			
-			//freshDataTimer.cancel();
-			//创建SimpleAdapter适配器将数据绑定到item显示控件上  
-		    adapter = new SimpleAdapter(
-			    ThinkAndroidDataShowActivtiy.this, 
-			    data, 
-			    R.layout.var_item,   
-	            new String[]{"id", "name", "value", "description"}, 
-	            new int[]{R.id.varItem_ID, 
-			    		R.id.varItem_Name,
-			    		R.id.varItem_Value,
-			    		R.id.varItem_Description}
-			    );  
-		    listView.setAdapter(adapter); 					
-			grmEquArr.clear();
-			grmEquArr.add(new GrmEqu("东餐厅","50102583211","dreamblue5598"));
-			freshDataTimer.schedule(timerTask, 2000 , 2000);			
-			Toast.makeText(getApplicationContext(), "切换至东餐厅", 1).show();	
+//			//创建SimpleAdapter适配器将数据绑定到item显示控件上  
+//		    adapter = new SimpleAdapter(
+//			    ThinkAndroidDataShowActivtiy.this, 
+//			    tempData, 
+//			    R.layout.var_item,   
+//	            new String[]{"id", "name", "value", "description"}, 
+//	            new int[]{R.id.varItem_ID, 
+//			    		R.id.varItem_Name,
+//			    		R.id.varItem_Value,
+//			    		R.id.varItem_Description}
+//			    );  
+//		    listView.setAdapter(adapter); 					
+//			GrmManager.getInstance().start(new GrmEqu("东餐厅","50102583211","dreamblue5598"));			
+//			freshDataTimer.schedule(timerTask, 1000 , 2000);
+//			Toast.makeText(getApplicationContext(), "切换至东餐厅", 1).show();	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,12 +122,10 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 				{
 				case R.id.btn_equ1:
 					try {
-						//freshDataTimer.cancel();
-						data = new ArrayList<HashMap<String,Object>>();
 						//创建SimpleAdapter适配器将数据绑定到item显示控件上  
 					    adapter = new SimpleAdapter(
 						    ThinkAndroidDataShowActivtiy.this, 
-						    data, 
+						    tempData, 
 						    R.layout.var_item,   
 				            new String[]{"id", "name", "value", "description"}, 
 				            new int[]{R.id.varItem_ID, 
@@ -121,9 +134,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 						    		R.id.varItem_Description}
 						    );  
 					    listView.setAdapter(adapter); 					
-						listView.setAdapter(adapter); 
-						grmEquArr.clear();
-						grmEquArr.add(new GrmEqu("东餐厅","50102583211","dreamblue5598"));
+						GrmManager.getInstance().start(new GrmEqu("东餐厅","50102583211","dreamblue5598"));
 						freshDataTimer.schedule(timerTask, 2000 , 2000);
 						Toast.makeText(getApplicationContext(), "切换至东餐厅", 1).show();
 					} catch (Exception e) {
@@ -133,12 +144,10 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 					break;
 				case R.id.btn_equ2:
 					try {
-						//freshDataTimer.cancel();
-						data = new ArrayList<HashMap<String,Object>>();
 						//创建SimpleAdapter适配器将数据绑定到item显示控件上  
 					    adapter = new SimpleAdapter(
 						    ThinkAndroidDataShowActivtiy.this, 
-						    data, 
+						    tempData, 
 						    R.layout.var_item,   
 				            new String[]{"id", "name", "value", "description"}, 
 				            new int[]{R.id.varItem_ID, 
@@ -146,11 +155,9 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 						    		R.id.varItem_Value,
 						    		R.id.varItem_Description}
 						    );  
-					    listView.setAdapter(adapter); 					
-						listView.setAdapter(adapter); 
-						grmEquArr.clear();
-						grmEquArr.add(new GrmEqu("西餐厅","20437182836","32345598"));
-						freshDataTimer.schedule(timerTask, 2000 , 2000);						
+					    listView.setAdapter(adapter);  
+						GrmManager.getInstance().start(new GrmEqu("西餐厅","20437182827","32345598"));						
+						freshDataTimer.schedule(timerTask, 2000 , 2000);
 						Toast.makeText(getApplicationContext(), "切换至西餐厅", 1).show();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -187,62 +194,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 	}
 	
 
-	//获取数据线程
-	TimerTask timerTask = new TimerTask() {
-		
-		@Override
-		public void run() {
 
-			GrmEqu grmEqu = grmEquArr.get(0);
-			
-			try {
-				grmEqu.grmLogon();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				grmEqu.grmReadAllVar();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-//    			System.out.println("==============================" + grmEqu.getGrmName() + " data============================");
-//    			for(GrmData grmData : grmEqu.getGrmEquVars())
-//    			{
-//    				System.out.println(grmData.varName + "," + grmData.varData);
-//    			}
-			  
-		    int i=1;
-		    if(data.size() <= 0)
-			{
-    			for(GrmData grmData : grmEqu.getGrmEquVars())
-    		    {  		    				
-    	            HashMap<String, Object> item = new HashMap<String, Object>();  
-    	            item.put("id", i);  
-    	            item.put("name", grmData.varName.trim());  
-    	            item.put("value", grmData.varData.trim());  
-    	            item.put("description", grmData.webVarDes.trim());  
-    	            data.add(item);     				
-    	            i++;
-    		    }		    			
-		    }  
-			else
-			{
-				for(GrmData grmData : grmEqu.getGrmEquVars())
-    		    { 	    			
-	            	data.get(i-1).put("id", i);
-	            	data.get(i-1).put("name", grmData.varName.trim());
-	            	data.get(i-1).put("value", grmData.varData.trim());
-	            	data.get(i-1).put("description", grmData.webVarDes.trim());
-	            	i++;
-    		    }
-			}
-				    			
-			Message message = new Message();
-            message.what = 1;
-            mHandler.sendMessage(message);
-		}
-	};
 	
 	//获取点击事件      
     private final class ItemClickListener implements OnItemClickListener
@@ -254,7 +206,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
             int varId =  Integer.parseInt(data.get("id").toString().trim()) - 1 ;  
             //Toast.makeText(getApplicationContext(), varId, Toast.LENGTH_SHORT).show();
             
-            GrmEqu grmEqu = grmEquArr.get(0);
+            GrmEqu grmEqu = GrmManager.getInstance().getEqu();
             if(grmEqu == null)
             {
             	try {
@@ -309,8 +261,8 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_BooleanActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
-        			bundle.putSerializable("GrmEquAddr", grmEquArr.get(0).GetADDR());
-        			bundle.putSerializable("GrmEquSID", grmEquArr.get(0).GetSID());
+        			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
+        			bundle.putSerializable("GrmEquSID", GrmManager.getInstance().getEqu().GetSID());
         			intent.putExtras(bundle);
         			startActivity(intent);      			
         		}
@@ -320,8 +272,8 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_IntActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
-        			bundle.putSerializable("GrmEquAddr", grmEquArr.get(0).GetADDR());
-        			bundle.putSerializable("GrmEquSID", grmEquArr.get(0).GetSID());
+        			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
+        			bundle.putSerializable("GrmEquSID", GrmManager.getInstance().getEqu().GetSID());
         			intent.putExtras(bundle);
         			startActivity(intent); 
 				}
@@ -331,8 +283,8 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_FloatActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
-        			bundle.putSerializable("GrmEquAddr", grmEquArr.get(0).GetADDR());
-        			bundle.putSerializable("GrmEquSID", grmEquArr.get(0).GetSID());
+        			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
+        			bundle.putSerializable("GrmEquSID", GrmManager.getInstance().getEqu().GetSID());
         			intent.putExtras(bundle);
         			startActivity(intent);
 				}
@@ -370,7 +322,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
     }
 
 
-	
+
 	
 
 }

@@ -1,31 +1,22 @@
 package com.cat.activity;
 
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.cat.activity.R;
-import com.peter.activity.DataShowActivity;
-import com.peter.grm.GrmData;
 import com.peter.grm.GrmEqu;
-import com.peter.login.Login;
 import com.peter.util.MakeToast;
 import com.ta.annotation.TAInject;
 import com.ta.annotation.TAInjectView;
 import com.ta.util.http.AsyncHttpClient;
 import com.ta.util.http.AsyncHttpResponseHandler;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class ThinkAndroidLoginActivity  extends ThinkAndroidBaseActivity
