@@ -52,7 +52,7 @@ public class ThinkAndroidVarModify_FloatActivity extends ThinkAndroidBaseActivit
 		if(grmEquAddr == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmEquAddr is null!", Toast.LENGTH_SHORT);
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
 				throw new Exception("Bundle grmEquAddr is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -64,7 +64,7 @@ public class ThinkAndroidVarModify_FloatActivity extends ThinkAndroidBaseActivit
 		if(grmEquSID == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmEquSID is null!", Toast.LENGTH_SHORT);
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
 				throw new Exception("Bundle grmEquSID is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -77,7 +77,7 @@ public class ThinkAndroidVarModify_FloatActivity extends ThinkAndroidBaseActivit
 		if(grmData == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmData is null!", Toast.LENGTH_SHORT);
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
 				throw new Exception("Bundle grmData is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -107,12 +107,9 @@ public class ThinkAndroidVarModify_FloatActivity extends ThinkAndroidBaseActivit
 				switch (v.getId())
 				{
 				case R.id.btn_FloatOK:				    			    		
-			    	if(txt_varFloatVauleModify.getText().toString() == "")
+			    	if(txt_varFloatVauleModify.getText().toString().isEmpty())
 			    	{
-			    		 Toast.makeText(
-						    		ThinkAndroidVarModify_FloatActivity.this,
-						    		"需要输入数据", 
-						    		Toast.LENGTH_SHORT);
+			    		Toast.makeText(getApplicationContext(), "需要输入数据", 1).show();
 			    		return;
 			    	}
 			    	

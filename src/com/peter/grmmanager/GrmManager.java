@@ -2,12 +2,9 @@ package com.peter.grmmanager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import android.widget.SimpleAdapter;
 
 import com.peter.grm.GrmData;
 import com.peter.grm.GrmEqu;

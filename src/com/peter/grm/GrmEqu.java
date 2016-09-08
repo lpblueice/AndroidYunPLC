@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.peter.http.HttpRequest;
-import com.ta.TASyncHttpClient;
-import com.ta.annotation.TAInject;
-import com.ta.util.http.AsyncHttpClient;
 
 
 

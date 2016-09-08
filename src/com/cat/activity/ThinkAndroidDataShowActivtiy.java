@@ -11,7 +11,6 @@ import com.peter.grm.GrmEqu;
 import com.peter.grmmanager.GrmManager;
 import com.ta.annotation.TAInjectView;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,6 +60,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 		}
 	};
 	
+
 	@Override
 	protected void onAfterOnCreate(Bundle savedInstanceState)
 	{
@@ -86,23 +86,6 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 					}
 				}
 			};
-			
-			
-//			//创建SimpleAdapter适配器将数据绑定到item显示控件上  
-//		    adapter = new SimpleAdapter(
-//			    ThinkAndroidDataShowActivtiy.this, 
-//			    tempData, 
-//			    R.layout.var_item,   
-//	            new String[]{"id", "name", "value", "description"}, 
-//	            new int[]{R.id.varItem_ID, 
-//			    		R.id.varItem_Name,
-//			    		R.id.varItem_Value,
-//			    		R.id.varItem_Description}
-//			    );  
-//		    listView.setAdapter(adapter); 					
-//			GrmManager.getInstance().start(new GrmEqu("东餐厅","50102583211","dreamblue5598"));			
-//			freshDataTimer.schedule(timerTask, 1000 , 2000);
-//			Toast.makeText(getApplicationContext(), "切换至东餐厅", 1).show();	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,8 +116,8 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 						    		R.id.varItem_Value,
 						    		R.id.varItem_Description}
 						    );  
-					    listView.setAdapter(adapter); 					
-						GrmManager.getInstance().start(new GrmEqu("东餐厅","50102583211","dreamblue5598"));
+					    listView.setAdapter(adapter);  
+						GrmManager.getInstance().start(new GrmEqu("东餐厅","50102582967","dreamblue5598"));						
 						freshDataTimer.schedule(timerTask, 2000 , 2000);
 						Toast.makeText(getApplicationContext(), "切换至东餐厅", 1).show();
 					} catch (Exception e) {
@@ -190,7 +173,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 			timerTask = null;
 		}
 		
-		System.exit(0);
+		//System.exit(0);
 	}
 	
 
@@ -300,29 +283,23 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         
     	 if(keyCode == KeyEvent.KEYCODE_BACK)
-    	 {
+    	 {   			
     		Intent intent = new Intent();
  			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidLoginActivity.class);
- 			startActivity(intent);
+ 			startActivity(intent); 
+ 			
+ 			GrmManager.getInstance().finish();
+ 			this.finish();
+ 			
+ 			Toast.makeText(getApplicationContext(), "返回", 1).show();
+ 			
+ 			this.exitApp();
          }
     	 
     	 return super.onKeyDown(keyCode, event);
     	
     }
     
-    
-    protected void onStart() 
-    {    	
-	    super.onStart();    	
-	    YunPLCApplication mApp = (YunPLCApplication)getApplication();    	
-	    if(mApp.isExit())
-	    {    	
-	        finish();    	
-	    }    	
-    }
-
-
-
 	
 
 }

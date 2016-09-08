@@ -3,11 +3,6 @@ package com.peter.login;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.R.string;
-import android.view.Gravity;
-import android.widget.Toast;
-
-import com.peter.util.MakeToast;
 import com.ta.TASyncHttpClient;
 import com.ta.annotation.TAInject;
 import com.ta.util.http.AsyncHttpClient;
