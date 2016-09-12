@@ -14,11 +14,11 @@
             -->
     
     <TextView
-        android:id="@id/static_EquGroupLogin_Title"
+        android:id="@+id/static_EquGroupLogin_Title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/static_EquGroupLogin_Title"
+        android:text="设备组查看"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/static_EquGroupName" />
+            android:text="网站名/设备组名" />
 
         <EditText
             android:id="@+id/txt_EquGroupName"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/static_EquGroupPwd" />
+            android:text="登录密码" />
 
         <EditText
             android:id="@+id/txt_EquGroupPwd"
@@ -80,7 +80,7 @@
         android:id="@+id/btn_EquGroupLogin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_EquGroupLogin" />
+        android:text="登录设备组" />
 
 <!--  
     <TextView

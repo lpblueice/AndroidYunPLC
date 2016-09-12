@@ -1,15 +1,11 @@
-package com.cat.activity;
+package com.peter.myyunplc;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.cat.activity.R;
-import com.peter.grm.GrmEqu;
 import com.peter.http.HttpRequest;
-import com.ta.annotation.TAInject;
-import com.ta.annotation.TAInjectView;
-import com.ta.util.http.AsyncHttpClient;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,22 +16,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ThinkAndroidLoginActivity extends ThinkAndroidBaseActivity {
+public class LoginActivity extends Activity {
 
-	@TAInjectView(id = R.id.btn_EquGroupLogin)
-	Button btn_EquGroupLogin;
+	Button btn_EquGroupLogin = null;
+	TextView txt_EquGroupName = null;
+	TextView txt_EquGroupPwd = null;
+	Button btn_Exit = null;
 
-	@TAInjectView(id = R.id.txt_EquGroupName)
-	TextView txt_EquGroupName;
-
-	@TAInjectView(id = R.id.txt_EquGroupPwd)
-	TextView txt_EquGroupPwd;
-
-	@TAInjectView(id = R.id.btn_Exit)
-	Button btn_Exit;
-
-	@TAInject
-	private AsyncHttpClient asyncHttpClient;
 	private String retContent;
 	private String vaddr = "";
 	private String param = "";
@@ -51,34 +38,36 @@ public class ThinkAndroidLoginActivity extends ThinkAndroidBaseActivity {
 	private final String equGroupURLOri = "http://www.yunplc.com";// /qlog?X=570D0A67C34ABE9B9FB9F19717&Y=GP0042004a00490041004f0054004f004e0047";
 
 	@Override
-	protected void onAfterOnCreate(Bundle savedInstanceState) {
-		super.onAfterOnCreate(savedInstanceState);
-		setTitle(R.string.login_activity_title);
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+        super.onCreate(savedInstanceState);
+		setTitle("±±¾©½»Í¨´óÑ§¿ÕÆø¾»»¯Éè±¸");
 
+		setContentView(R.layout.activity_login);
+		
+		btn_EquGroupLogin=(Button)findViewById(R.id.btn_EquGroupLogin);
+		txt_EquGroupName=(TextView)findViewById(R.id.txt_EquGroupName);
+		txt_EquGroupPwd=(TextView)findViewById(R.id.txt_EquGroupPwd);
+		btn_Exit=(Button)findViewById(R.id.btn_Exit);
+    
 		txt_EquGroupName.setText("BJIAOTONG");
 		txt_EquGroupPwd.setText("dreamblue5598");
-	}
-
-	@Override
-	protected void onAfterSetContentView() {
-		super.onAfterSetContentView();
-
+		
 		try {
 			mHandler = new Handler() {
-				public void handleMessage(Message msg) {// æ­¤æ–¹æ³•åœ¨uiçº¿ç¨‹è¿è¡Œ
+				public void handleMessage(Message msg) {// ´Ë·½·¨ÔÚuiÏß³ÌÔËĞĞ
 					super.handleMessage(msg);
 					if (msg.what == 1) {
-						Toast.makeText(getApplicationContext(), "ç™»å½•æˆåŠŸ", 1)
+						Toast.makeText(getApplicationContext(), "µÇÂ¼³É¹¦", 1)
 								.show();
-						//doActivity(R.string.thinkandroiddatashowactivity);
 						Intent intent = new Intent();
-			 			intent.setClass(ThinkAndroidLoginActivity.this,ThinkAndroidDataShowActivtiy.class);
+			 			intent.setClass(LoginActivity.this,DataShowActivtiy.class);
 			 			startActivity(intent); 
 					} else if (msg.what == 2) {
 						Toast.makeText(getApplicationContext(),
-								"æœåŠ¡å™¨ä¸­ä¸å­˜åœ¨æ­¤ç”¨æˆ·åå¯¹åº”çš„è®¾å¤‡", 1).show();
+								"·şÎñÆ÷ÖĞ²»´æÔÚ´ËÓÃ»§Ãû¶ÔÓ¦µÄÉè±¸", 1).show();
 					} else if (msg.what == 3) {
-						Toast.makeText(getApplicationContext(), "æœåŠ¡å™¨åº”ç­”å¤±è´¥", 1)
+						Toast.makeText(getApplicationContext(), "·şÎñÆ÷Ó¦´ğÊ§°Ü", 1)
 								.show();
 					}
 				}
@@ -117,31 +106,29 @@ public class ThinkAndroidLoginActivity extends ThinkAndroidBaseActivity {
 		btn_Exit.setOnClickListener(onClickListener);
 	}
 
-
-
 	public void DoLogin(String name, String pwd, boolean isGrp)
 			throws Exception {
 		if (name == null || name.equals(""))
-			throw new Exception("è®¾å¤‡ç»„åä¸ºç©º");
+			throw new Exception("Éè±¸×éÃûÎª¿Õ");
 
 		if (pwd == null || pwd.equals("") || pwd.length() == 0)
-			throw new Exception("å¯†ç ä¸ºç©º");
+			throw new Exception("ÃÜÂëÎª¿Õ");
 
 		String strName = name.trim();
 		String strPwd = pwd.trim();
 
 		if (strPwd.length() < 6)
-			throw new Exception("å¯†ç å°‘äº6ä½");
+			throw new Exception("ÃÜÂëÉÙÓÚ6Î»");
 
 		String venc = "";
 		if (isGrp) {
 			if (strName == null || strName.equals(""))
-				throw new Exception("è®¾å¤‡ç»„åä¸ºç©º");
+				throw new Exception("Éè±¸×éÃûÎª¿Õ");
 			else
 				venc = fStr2Hex(strName);
 		} else {
 			if (!isNumeric(strName) || strName.length() != 11)
-				throw new Exception("è®¾å¤‡åºå·éæ³•,å¿…é¡»æ˜¯11ä½æ•°å­—");
+				throw new Exception("Éè±¸ĞòºÅ·Ç·¨,±ØĞëÊÇ11Î»Êı×Ö");
 			else
 				venc = strName;
 		}

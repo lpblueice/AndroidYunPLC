@@ -4,9 +4,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+    
+    <lecho.lib.hellocharts.view.LineChartView
+	    android:id="@+id/line_chart"
+	    android:layout_width="fill_parent"
+	    android:layout_height="300dp"
+	    android:background="#ffffff"/>
+    
+    
+    
 
 </LinearLayout>

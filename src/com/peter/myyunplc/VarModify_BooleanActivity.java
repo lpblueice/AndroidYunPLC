@@ -1,13 +1,11 @@
-package com.cat.activity;
+package com.peter.myyunplc;
 
 import java.util.HashMap;
 
 import com.peter.grm.GrmData;
-import com.peter.grm.GrmEqu;
 import com.peter.http.HttpRequest;
-import com.ta.annotation.TAInjectView;
-
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,41 +15,38 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActivity
+public class VarModify_BooleanActivity extends Activity
 {
 	
-	@TAInjectView(id = R.id.btn_BooleanOK)
-	Button btn_BooleanOK;
-	
-	@TAInjectView(id = R.id.switch_boolean)
-	Switch switch_boolean;
-	
-	@TAInjectView(id = R.id.txtview_varValue)
-	TextView txtview_varValue;
-	
-	@TAInjectView(id = R.id.txtview_varName)
-	TextView txtview_varName;
-	
-	@TAInjectView(id = R.id.txtview_varDes)
-	TextView txtview_varDes;
-	
+	Button btn_BooleanOK = null;
+	TextView txtview_varValue = null;
+	TextView txtview_varName = null;
+	TextView txtview_varDes = null;
+	Switch switch_boolean = null;	
 	
 	GrmData grmData =null;
 	String grmEquAddr = null;
 	String grmEquSID = null;
 	
 	@Override
-	protected void onAfterOnCreate(Bundle savedInstanceState)
+	protected void onCreate(Bundle savedInstanceState) 
 	{
-		super.onAfterOnCreate(savedInstanceState);
-		setTitle(R.string.thinkandroid_modifyvar_title);
+        super.onCreate(savedInstanceState);
+		setTitle("数据修改界面");
 		
+		setContentView(R.layout.activity_varmodify_boolean);
+		
+		btn_BooleanOK=(Button)findViewById(R.id.btn_BooleanOK);
+    	txtview_varValue=(TextView)findViewById(R.id.txtview_varValue);
+    	txtview_varName=(TextView)findViewById(R.id.txtview_varName);
+    	txtview_varDes=(TextView)findViewById(R.id.txtview_varDes);
+    	switch_boolean=(Switch)findViewById(R.id.switch_boolean);
 		
 		grmEquAddr = (String)getIntent().getSerializableExtra("GrmEquAddr");
 		if(grmEquAddr == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmEquAddr is null!", Toast.LENGTH_SHORT);
+				//Toast.makeText(getApplicationContext(),"Bundle grmEquAddr is null!", Toast.LENGTH_SHORT);
 				throw new Exception("Bundle grmEquAddr is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -63,7 +58,7 @@ public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActiv
 		if(grmEquSID == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmEquSID is null!", Toast.LENGTH_SHORT);
+				//Toast.makeText(getApplicationContext(),"Bundle grmEquSID is null!", Toast.LENGTH_SHORT);
 				throw new Exception("Bundle grmEquSID is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -76,7 +71,7 @@ public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActiv
 		if(grmData == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(),"Bundle grmData is null!", Toast.LENGTH_SHORT);
+				//Toast.makeText(getApplicationContext(),"Bundle grmData is null!", Toast.LENGTH_SHORT);
 				throw new Exception("Bundle grmData is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -111,9 +106,9 @@ public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActiv
 	
 
 	@Override
-	protected void onAfterSetContentView()
+	public void setContentView(int layoutResID)
 	{
-		super.onAfterSetContentView();
+		super.setContentView(layoutResID);
 		OnClickListener onClickListener = new OnClickListener()
 		{
 			@SuppressLint("ShowToast") 
@@ -128,7 +123,7 @@ public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActiv
 				    					grmData.varName+"\n"+
 				    					varModify + "\n";	
 				    Toast.makeText(
-				    		ThinkAndroidVarModify_BooleanActivity.this,
+				    		VarModify_BooleanActivity.this,
 				    		strRequest, 
 				    		Toast.LENGTH_SHORT);
 				    new Thread(
@@ -145,7 +140,7 @@ public class ThinkAndroidVarModify_BooleanActivity extends ThinkAndroidBaseActiv
 							}).start();				    
 					
 				    Intent intent = new Intent();
-        			intent.setClass(ThinkAndroidVarModify_BooleanActivity.this, ThinkAndroidDataShowActivtiy.class);
+        			intent.setClass(VarModify_BooleanActivity.this, DataShowActivtiy.class);
         			startActivity(intent);  
 				    
 					break;				

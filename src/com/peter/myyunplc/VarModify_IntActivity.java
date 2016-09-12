@@ -1,42 +1,27 @@
-package com.cat.activity;
+package com.peter.myyunplc;
 
 import java.util.HashMap;
 
-import org.w3c.dom.Text;
-
 import com.peter.grm.GrmData;
-import com.peter.grm.GrmEqu;
 import com.peter.http.HttpRequest;
-import com.ta.annotation.TAInjectView;
-
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
+public class VarModify_IntActivity extends Activity
 {
 	
-	@TAInjectView(id = R.id.btn_IntOK)
-	Button btn_IntOK;
-
-	
-	@TAInjectView(id = R.id.txtview_varValue)
-	TextView txtview_varValue;
-	
-	@TAInjectView(id = R.id.txtview_varName)
-	TextView txtview_varName;
-	
-	@TAInjectView(id = R.id.txtview_varDes)
-	TextView txtview_varDes;
-	
-	@TAInjectView(id = R.id.txt_varIntVauleModify)
-	TextView txt_varIntVauleModify;
+	Button btn_IntOK = null;
+	TextView txtview_varValue = null;
+	TextView txtview_varName = null;
+	TextView txtview_varDes = null;
+	TextView txt_varIntVauleModify = null;
 	
 	
 	GrmData grmData =null;
@@ -44,17 +29,24 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 	String grmEquSID = null;
 	
 	@Override
-	protected void onAfterOnCreate(Bundle savedInstanceState)
+	protected void onCreate(Bundle savedInstanceState) 
 	{
-		super.onAfterOnCreate(savedInstanceState);
-		setTitle(R.string.thinkandroid_modifyvar_title);
+        super.onCreate(savedInstanceState);
+		setTitle(" ˝æ›–ﬁ∏ƒΩÁ√Ê");
 		
+		setContentView(R.layout.activity_varmodify_int);
+		
+		btn_IntOK=(Button)findViewById(R.id.btn_IntOK);
+    	txtview_varValue=(TextView)findViewById(R.id.txtview_varValue);
+    	txtview_varName=(TextView)findViewById(R.id.txtview_varName);
+    	txtview_varDes=(TextView)findViewById(R.id.txtview_varDes);
+    	txt_varIntVauleModify=(TextView)findViewById(R.id.txt_varIntVauleModify);
 		
 		grmEquAddr = (String)getIntent().getSerializableExtra("GrmEquAddr");
 		if(grmEquAddr == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", Toast.LENGTH_LONG).show();
 				throw new Exception("Bundle grmEquAddr is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -66,7 +58,7 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 		if(grmEquSID == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", Toast.LENGTH_LONG).show();
 				throw new Exception("Bundle grmEquSID is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -79,7 +71,7 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 		if(grmData == null)
 		{
 			try {
-				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", 1).show();
+				Toast.makeText(getApplicationContext(), "Bundle grmData is null!", Toast.LENGTH_LONG).show();
 				throw new Exception("Bundle grmData is null!");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -97,9 +89,9 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 	
 
 	@Override
-	protected void onAfterSetContentView()
+	public void setContentView(int layoutResID)
 	{
-		super.onAfterSetContentView();
+		super.setContentView(layoutResID);
 		OnClickListener onClickListener = new OnClickListener()
 		{
 			@SuppressLint("ShowToast") 
@@ -111,7 +103,7 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 				case R.id.btn_IntOK:				    			    		
 			    	if(txt_varIntVauleModify.getText().toString().isEmpty())
 			    	{
-			    		 Toast.makeText(getApplicationContext(), "ÈúÄË¶ÅËæìÂÖ•Êï∞ÊçÆ", 1).show();
+			    		 Toast.makeText(getApplicationContext(), "Èú?Ë¶ÅËæìÂÖ•Êï∞Êç?", 1).show();
 			    		return;
 			    	}
 			    	
@@ -120,7 +112,7 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 				    					grmData.varName+"\n"+
 				    					varModify + "\n";	
 				    Toast.makeText(
-				    		ThinkAndroidVarModify_IntActivity.this,
+				    		VarModify_IntActivity.this,
 				    		strRequest, 
 				    		Toast.LENGTH_SHORT);
 				    new Thread(
@@ -137,7 +129,7 @@ public class ThinkAndroidVarModify_IntActivity extends ThinkAndroidBaseActivity
 							}).start();				    
 					
 				    Intent intent = new Intent();
-        			intent.setClass(ThinkAndroidVarModify_IntActivity.this, ThinkAndroidDataShowActivtiy.class);
+        			intent.setClass(VarModify_IntActivity.this, DataShowActivtiy.class);
         			startActivity(intent);  
 				    
 					break;				

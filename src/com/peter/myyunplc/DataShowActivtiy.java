@@ -1,4 +1,4 @@
-package com.cat.activity;
+package com.peter.myyunplc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,8 +9,7 @@ import java.util.TimerTask;
 import com.peter.grm.GrmData;
 import com.peter.grm.GrmEqu;
 import com.peter.grmmanager.GrmManager;
-import com.ta.annotation.TAInjectView;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,17 +24,16 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
+public class DataShowActivtiy extends Activity
 {
 	
-	@TAInjectView(id = R.id.btn_equ1)
-	Button btn_equ1;
+
+	Button btn_equ1 = null;
+	Button btn_equ2 = null;
+	Button btn_testM = null;
 	
-	@TAInjectView(id = R.id.btn_equ2)
-	Button btn_equ2;
-	
-	ListView listView;
-	SimpleAdapter adapter;
+	ListView listView = null;
+	SimpleAdapter adapter = null;
 	int mPosition;
 	
 	Timer freshDataTimer = new Timer();
@@ -62,19 +60,24 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 	
 
 	@Override
-	protected void onAfterOnCreate(Bundle savedInstanceState)
+	protected void onCreate(Bundle savedInstanceState) 
 	{
-		super.onAfterOnCreate(savedInstanceState);
-		setTitle(R.string.thinkandroid_datashow_title);
+        super.onCreate(savedInstanceState);
+		setTitle("Êı¾İÏÔÊ¾½çÃæ");
 
+		setContentView(R.layout.activity_datashow);
 		
+		btn_equ1=(Button)findViewById(R.id.btn_equ1);
+		btn_equ2=(Button)findViewById(R.id.btn_equ2);
+		btn_testM=(Button)findViewById(R.id.btn_testM);
+    	
 		listView = (ListView) this.findViewById(R.id.listView1); 
 		listView.setOnItemClickListener(new ItemClickListener());
 
 		
 		try {
 			mHandler = new Handler() {
-				public void handleMessage(Message msg) {// æ­¤æ–¹æ³•åœ¨uiçº¿ç¨‹è¿è¡Œ
+				public void handleMessage(Message msg) {// ´Ë·½·¨ÔÚuiÏß³ÌÔËĞĞ
 					super.handleMessage(msg);
 					if (msg.what == 1) {
 						System.out.println("======adapter changed!======");
@@ -90,12 +93,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	protected void onAfterSetContentView()
-	{
-		super.onAfterSetContentView();
+		
 		OnClickListener onClickListener = new OnClickListener()
 		{
 			@Override
@@ -105,9 +103,9 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 				{
 				case R.id.btn_equ1:
 					try {
-						//åˆ›å»ºSimpleAdapteré€‚é…å™¨å°†æ•°æ®ç»‘å®šåˆ°itemæ˜¾ç¤ºæ§ä»¶ä¸Š  
+						//´´½¨SimpleAdapterÊÊÅäÆ÷½«Êı¾İ°ó¶¨µ½itemÏÔÊ¾¿Ø¼şÉÏ  
 					    adapter = new SimpleAdapter(
-						    ThinkAndroidDataShowActivtiy.this, 
+						    DataShowActivtiy.this, 
 						    tempData, 
 						    R.layout.var_item,   
 				            new String[]{"id", "name", "value", "description"}, 
@@ -117,9 +115,9 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 						    		R.id.varItem_Description}
 						    );  
 					    listView.setAdapter(adapter);  
-						GrmManager.getInstance().start(new GrmEqu("ä¸œé¤å…","50102582967","dreamblue5598"));						
+						GrmManager.getInstance().start(new GrmEqu("¶«²ÍÌü","50102582967","dreamblue5598"));						
 						freshDataTimer.schedule(timerTask, 2000 , 2000);
-						Toast.makeText(getApplicationContext(), "åˆ‡æ¢è‡³ä¸œé¤å…", 1).show();
+						Toast.makeText(getApplicationContext(), "ÇĞ»»ÖÁ¶«²ÍÌü", Toast.LENGTH_LONG).show();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -127,9 +125,9 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 					break;
 				case R.id.btn_equ2:
 					try {
-						//åˆ›å»ºSimpleAdapteré€‚é…å™¨å°†æ•°æ®ç»‘å®šåˆ°itemæ˜¾ç¤ºæ§ä»¶ä¸Š  
+						//´´½¨SimpleAdapterÊÊÅäÆ÷½«Êı¾İ°ó¶¨µ½itemÏÔÊ¾¿Ø¼şÉÏ  
 					    adapter = new SimpleAdapter(
-						    ThinkAndroidDataShowActivtiy.this, 
+						    DataShowActivtiy.this, 
 						    tempData, 
 						    R.layout.var_item,   
 				            new String[]{"id", "name", "value", "description"}, 
@@ -139,14 +137,20 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 						    		R.id.varItem_Description}
 						    );  
 					    listView.setAdapter(adapter);  
-						GrmManager.getInstance().start(new GrmEqu("è¥¿é¤å…","20437182827","32345598"));						
+						GrmManager.getInstance().start(new GrmEqu("Î÷²ÍÌü","20437182827","32345598"));						
 						freshDataTimer.schedule(timerTask, 2000 , 2000);
-						Toast.makeText(getApplicationContext(), "åˆ‡æ¢è‡³è¥¿é¤å…", 1).show();
+						Toast.makeText(getApplicationContext(), "ÇĞ»»ÖÁÎ÷²ÍÌü", Toast.LENGTH_LONG).show();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					break;				
+					break;
+				case R.id.btn_testM:
+					System.out.println("btn_testM press!");
+					Intent intent = new Intent();
+        			intent.setClass(DataShowActivtiy.this, HistoryDataShowActivity.class);
+        			startActivity(intent); 
+					break;
 				default:
 					break;
 				}
@@ -156,6 +160,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 	
 		btn_equ1.setOnClickListener(onClickListener);
 		btn_equ2.setOnClickListener(onClickListener);
+		btn_testM.setOnClickListener(onClickListener);
 	}
 	
 	@Override
@@ -179,7 +184,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
 
 
 	
-	//è·å–ç‚¹å‡»äº‹ä»¶      
+	//»ñÈ¡µã»÷ÊÂ¼ş      
     private final class ItemClickListener implements OnItemClickListener
     {  
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -224,7 +229,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         	}
         	else  if(grmData.getVarRW() == GrmData.varRWTypeEnum.VAR_RW_TYPE_R)
         	{
-        		Toast.makeText(getApplicationContext(), "æ•°æ®åªè¯»ï¼Œä¸èƒ½ä¿®æ”¹ã€‚", Toast.LENGTH_SHORT).show();
+        		Toast.makeText(getApplicationContext(), "Êı¾İÖ»¶Á£¬²»ÄÜĞŞ¸Ä¡£", Toast.LENGTH_SHORT).show();
         		return;
 			}
         	else  if(grmData.getVarRW() == GrmData.varRWTypeEnum.VAR_RW_TYPE_RW)
@@ -241,7 +246,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         		else if(grmData.getVarType() == GrmData.varTypeEnum.VAR_TYPE_B)
         		{
         			Intent intent = new Intent();
-        			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_BooleanActivity.class);
+        			intent.setClass(DataShowActivtiy.this, VarModify_BooleanActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
         			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
@@ -252,7 +257,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         		else if(grmData.getVarType() == GrmData.varTypeEnum.VAR_TYPE_I)
         		{
         			Intent intent = new Intent();
-        			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_IntActivity.class);
+        			intent.setClass(DataShowActivtiy.this, VarModify_IntActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
         			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
@@ -263,7 +268,7 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
         		else if(grmData.getVarType() == GrmData.varTypeEnum.VAR_TYPE_F)
         		{
         			Intent intent = new Intent();
-        			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidVarModify_FloatActivity.class);
+        			intent.setClass(DataShowActivtiy.this, VarModify_FloatActivity.class);
         			Bundle bundle = new Bundle();
         			bundle.putSerializable("GrmData", grmData);
         			bundle.putSerializable("GrmEquAddr", GrmManager.getInstance().getEqu().GetADDR());
@@ -285,15 +290,13 @@ public class ThinkAndroidDataShowActivtiy extends ThinkAndroidBaseActivity
     	 if(keyCode == KeyEvent.KEYCODE_BACK)
     	 {   			
     		Intent intent = new Intent();
- 			intent.setClass(ThinkAndroidDataShowActivtiy.this, ThinkAndroidLoginActivity.class);
+ 			intent.setClass(DataShowActivtiy.this, LoginActivity.class);
  			startActivity(intent); 
  			
  			GrmManager.getInstance().finish();
  			this.finish();
  			
- 			Toast.makeText(getApplicationContext(), "è¿”å›", 1).show();
- 			
- 			this.exitApp();
+ 			Toast.makeText(getApplicationContext(), "·µ»Ø", 1).show();
          }
     	 
     	 return super.onKeyDown(keyCode, event);

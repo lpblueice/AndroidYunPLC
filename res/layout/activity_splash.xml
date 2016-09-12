@@ -22,7 +22,7 @@
         android:layout_marginTop="100dp"
         android:autoLink="all"
         android:gravity="left"
-        android:text="@string/app_describe"
+        android:text="XXXX"
         android:textSize="16dp" />
 
 </RelativeLayout>
